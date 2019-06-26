@@ -28,7 +28,7 @@ type ArcadeInfo struct {
 
 const (
 	overwatchArcade = "https://overwatcharcade.today/api/today"
-	telegramMsg     = `CHANGES DAILY\n%s\n%s\n\nCHANGES DAILY\n%s\n%s\n\nCHANGES WEEKLY\n%s\n%s\n\nCHANGES WEEKLY\n%s\n%s\n\nPERMANENT\n%s\n%s`
+	telegramMsg     = `매일 변경\n%s\n%s\n\n매일 변경\n%s\n%s\n\n매주 변경\n%s\n%s\n\n매주 변경\n%s\n%s\n\n변경없음\n%s\n%s`
 )
 
 var translateMap map[string]string
