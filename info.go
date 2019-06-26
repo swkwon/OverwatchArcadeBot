@@ -28,7 +28,7 @@ type ArcadeInfo struct {
 
 const (
 	overwatchArcade = "https://overwatcharcade.today/api/today"
-	telegramMsg     = `Daily 1\n%s\n%s\n\nDaily 2\n%s\n%s\n\nWeekly 1\n%s\n%s\n\nWeekly 2\n%s\n%s\n\nPermanent\n%s\n%s`
+	telegramMsg     = `CHANGES DAILY\n%s\n%s\n\nCHANGES DAILY\n%s\n%s\n\nCHANGES WEEKLY\n%s\n%s\n\nCHANGES WEEKLY\n%s\n%s\n\nPERMANENT\n%s\n%s`
 )
 
 func getArcadeInfo() (*ArcadeInfo, error) {
