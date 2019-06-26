@@ -1,7 +1,7 @@
 package main
 
 import (
-	"encoding/json"
+	"bytes"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -10,23 +10,30 @@ import (
 )
 
 const (
-	overwatchArcade = "https://overwatcharcade.today/api/today"
+	overwatchArcade   = "https://overwatcharcade.today/api/today"
+	telegramURLFormat = "https://api.telegram.org/bot%s/SendMessage"
+	tokenKey          = "OVERWATCH_ARCADE_BOT_API_TOKEN"
+	telegramChannel   = "@overwatcharcade"
+	post              = "POST"
+	contentJSON       = "application/json"
 )
 
-type Item struct {
+// ArcadeItem ...
+type ArcadeItem struct {
 	ID      int    `json:"id"`
 	Name    string `json:"name"`
 	Players string `json:"players"`
 	Code    string `json:"code"`
 }
 
+// ArcadeInfo ...
 type ArcadeInfo struct {
-	UpdateAt      string `json:"updated_at"`
-	TileLarge     Item   `json:"tile_large"`
-	TileWeekly1   Item   `json:"tile_weekly_1"`
-	TileDaily     Item   `json:"tile_daily"`
-	TileWeekly2   Item   `json:"tile_weekly_2"`
-	TilePermanent Item   `json:"tile_permanent"`
+	UpdateAt      string     `json:"updated_at"`
+	TileLarge     ArcadeItem `json:"tile_large"`
+	TileWeekly1   ArcadeItem `json:"tile_weekly_1"`
+	TileDaily     ArcadeItem `json:"tile_daily"`
+	TileWeekly2   ArcadeItem `json:"tile_weekly_2"`
+	TilePermanent ArcadeItem `json:"tile_permanent"`
 }
 
 func main() {
@@ -38,13 +45,25 @@ func main() {
 	}
 
 	defer res.Body.Close()
-	bytes, _ := ioutil.ReadAll(res.Body)
-	fmt.Println(string(bytes))
-	arcadeInfo := &ArcadeInfo{}
+	data, _ := ioutil.ReadAll(res.Body)
 
-	if e := json.Unmarshal(bytes, arcadeInfo); e != nil {
-		fmt.Printf("error on unmarshal: %#v", e)
+	msg := fmt.Sprintf(`{"chat_id":"%s","text":"%s"}`, telegramChannel, string(data))
+	telegramURL := fmt.Sprintf(telegramURLFormat, os.Getenv(tokenKey))
+	log.Printf("msg: %s\n", msg)
+	log.Printf("telegram url: %s\n", telegramURL)
+
+	reader := bytes.NewBuffer([]byte(msg))
+	if req, err := http.NewRequest(post, telegramURL, reader); err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	} else {
+		req.Header.Set("Content-Type", contentJSON)
+		client := &http.Client{}
+		if res, err := client.Do(req); err != nil {
+			log.Fatal(err)
+			os.Exit(1)
+		} else {
+			defer res.Body.Close()
+		}
 	}
-
-	fmt.Printf("%#v\n", arcadeInfo)
 }
