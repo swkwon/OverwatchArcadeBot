@@ -34,6 +34,7 @@ const (
 var translateMap map[string]string
 
 func init() {
+	translateMap = make(map[string]string)
 	translateMap["1v1"] = "1대1"
 	translateMap["3v3"] = "3대3"
 	translateMap["4v4"] = "4대4"
