@@ -16,6 +16,6 @@ func main() {
 		log.Fatal(err)
 		os.Exit(1)
 	}
-	msg, err := makeText(info)
+	msg := makeText(info)
 	send(telegramChannel, os.Getenv(tokenKey), msg)
 }

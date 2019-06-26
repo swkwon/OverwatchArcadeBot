@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -27,7 +28,7 @@ type ArcadeInfo struct {
 
 const (
 	overwatchArcade = "https://overwatcharcade.today/api/today"
-	telegramMsg     = `test\ntest`
+	telegramMsg     = `Daily 1\n%s\n%s\n\nDaily 2\n%s\n%s\n\nWeekly 1\n%s\n%s\n\nWeekly 2\n%s\n%s\n\nPermanent\n%s\n%s`
 )
 
 func getArcadeInfo() (*ArcadeInfo, error) {
@@ -53,6 +54,11 @@ func getArcadeInfo() (*ArcadeInfo, error) {
 	return info, nil
 }
 
-func makeText(info *ArcadeInfo) (string, error) {
-	return telegramMsg, nil
+func makeText(info *ArcadeInfo) string {
+	return fmt.Sprintf(telegramMsg,
+		info.TileLarge.Players, info.TileLarge.Name,
+		info.TileDaily.Players, info.TileDaily.Name,
+		info.TileWeekly1.Players, info.TileWeekly1.Name,
+		info.TileWeekly2.Players, info.TileWeekly2.Name,
+		info.TilePermanent.Players, info.TilePermanent.Name)
 }
