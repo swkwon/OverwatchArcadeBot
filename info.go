@@ -28,7 +28,7 @@ type ArcadeInfo struct {
 
 const (
 	overwatchArcade = "https://overwatcharcade.today/api/today"
-	telegramMsg     = `매일 변경\n%s\n%s\n\n매일 변경\n%s\n%s\n\n매주 변경\n%s\n%s\n\n매주 변경\n%s\n%s\n\n변경없음\n%s\n%s`
+	telegramMsg     = `%s\n매일 변경\n%s\n%s\n\n매일 변경\n%s\n%s\n\n매주 변경\n%s\n%s\n\n매주 변경\n%s\n%s\n\n변경없음\n%s\n%s`
 )
 
 var translateMap map[string]string
@@ -78,6 +78,7 @@ func init() {
 	translateMap["Uprising (All Heroes)"] = "옴닉의 반란: 모든 영웅"
 	translateMap["Uprising (Story)"] = "옴닉의 반란: 스토리"
 	translateMap["Yeti Hunter"] = "예티 사냥꾼"
+	translateMap["Mirrored Deathmatch"] = "미러전 데스매치"
 
 }
 
@@ -112,7 +113,7 @@ func translate(origin string) string {
 }
 
 func makeText(info *ArcadeInfo) string {
-	return fmt.Sprintf(telegramMsg,
+	return fmt.Sprintf(telegramMsg, info.UpdateAt,
 		translate(info.TileLarge.Players), translate(info.TileLarge.Name),
 		translate(info.TileDaily.Players), translate(info.TileDaily.Name),
 		translate(info.TileWeekly1.Players), translate(info.TileWeekly1.Name),
