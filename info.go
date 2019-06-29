@@ -99,7 +99,7 @@ func getArcadeInfo() (*ArcadeInfo, error) {
 
 	info := &ArcadeInfo{}
 	if err := json.Unmarshal(data, info); err != nil {
-		log.Fatal(err)
+		log.Fatal(err, string(data))
 		return nil, err
 	}
 	return info, nil
