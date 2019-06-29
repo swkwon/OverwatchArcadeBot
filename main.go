@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 )
@@ -14,6 +15,7 @@ func main() {
 	info, err := getArcadeInfo()
 	if err != nil {
 		log.Fatal(err)
+		send(telegramChannel, os.Getenv(tokenKey), fmt.Sprintf("ERROR:\n%s", err.Error()))
 		os.Exit(1)
 	}
 	msg := makeText(info)
