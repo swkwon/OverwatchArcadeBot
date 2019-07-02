@@ -79,7 +79,7 @@ func init() {
 	translateMap["Uprising (Story)"] = "옴닉의 반란: 스토리"
 	translateMap["Yeti Hunter"] = "예티 사냥꾼"
 	translateMap["Mirrored Deathmatch"] = "미러전 데스매치"
-
+	translateMap["Hero Gauntlet"] = "영웅 건틀릿"
 }
 
 func getArcadeInfo() (*ArcadeInfo, error) {
