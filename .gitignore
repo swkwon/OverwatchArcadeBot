@@ -1,9 +1,5 @@
-.idea/misc.xml
-TwitterProject.exe
-.idea/TwitterProject.iml
-.idea/modules.xml
-.idea/watcherTasks.xml
-.idea/workspace.xml
+OverwatchArcadeBot.exe
+OverwatchArcadeBot
 vendor/github.com/PuerkitoBio/goquery/utilities.go
 vendor/modules.txt
 vendor/github.com/PuerkitoBio/goquery/.gitattributes
