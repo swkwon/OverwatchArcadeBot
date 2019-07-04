@@ -94,7 +94,7 @@ func getArcadeInfo() (*ArcadeInfo, error) {
 	if err != nil {
 		return nil, err
 	}
-	data = []byte("[]")
+
 	info := &ArcadeInfo{}
 	if err := json.Unmarshal(data, info); err != nil {
 		log.Println(err, string(data))
