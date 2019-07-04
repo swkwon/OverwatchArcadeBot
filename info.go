@@ -86,21 +86,19 @@ func getArcadeInfo() (*ArcadeInfo, error) {
 	res, err := http.Get(overwatchArcade)
 
 	if err != nil {
-		log.Fatal(err)
 		return nil, err
 	}
 
 	defer res.Body.Close()
 	data, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		log.Fatal(err)
 		return nil, err
 	}
-
+	data = []byte("[]")
 	info := &ArcadeInfo{}
 	if err := json.Unmarshal(data, info); err != nil {
-		log.Fatal(err, string(data))
-		return nil, err
+		log.Println(err, string(data))
+		return nil, fmt.Errorf("got %s, error: %s", string(data), err.Error())
 	}
 	return info, nil
 }
