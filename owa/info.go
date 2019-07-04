@@ -1,4 +1,4 @@
-package main
+package owa
 
 import (
 	"encoding/json"
@@ -82,7 +82,7 @@ func init() {
 	translateMap["Hero Gauntlet"] = "영웅 건틀릿"
 }
 
-func getArcadeInfo() (*ArcadeInfo, error) {
+func GetArcadeInfo() (*ArcadeInfo, error) {
 	res, err := http.Get(overwatchArcade)
 
 	if err != nil {
@@ -110,7 +110,7 @@ func translate(origin string) string {
 	return origin
 }
 
-func makeText(info *ArcadeInfo) string {
+func MakeText(info *ArcadeInfo) string {
 	return fmt.Sprintf(telegramMsg, info.UpdateAt,
 		translate(info.TileLarge.Players), translate(info.TileLarge.Name),
 		translate(info.TileDaily.Players), translate(info.TileDaily.Name),

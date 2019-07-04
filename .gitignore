@@ -43,3 +43,9 @@ vendor/golang.org/x/net/html/token.go
 vendor/golang.org/x/net/html/atom/atom.go
 vendor/golang.org/x/net/html/atom/gen.go
 vendor/golang.org/x/net/html/atom/table.go
+.idea/modules.xml
+data.log
+.idea/OverwatchArcadeBot.iml
+.idea/misc.xml
+.idea/vcs.xml
+.idea/workspace.xml
