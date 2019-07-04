@@ -2,8 +2,8 @@ package main
 
 import (
 	"OverwatchArcadeBot/owa"
+	"OverwatchArcadeBot/date"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"time"
@@ -31,21 +31,8 @@ func execute() error {
 	return nil
 }
 
-func writeFile() {
-	t := time.Now()
-	str := t.Format(time.RFC3339)
-	ioutil.WriteFile("data.log", []byte(str), 0644)
-}
-
-func readFile() string {
-	if b, e := ioutil.ReadFile("data.log"); e == nil {
-		return string(b)
-	}
-	return ""
-}
-
 func isTodayData() bool {
-	dt := readFile()
+	dt := date.ReadFile()
 	if dt == "" {
 		return false
 	}
@@ -67,6 +54,6 @@ func main() {
 		return
 	}
 	if e := execute(); e == nil {
-		writeFile()
+		date.WriteFile()
 	}
 }
