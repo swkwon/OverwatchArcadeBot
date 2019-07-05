@@ -1,8 +1,8 @@
 package main
 
 import (
-	"OverwatchArcadeBot/owa"
 	"OverwatchArcadeBot/date"
+	"OverwatchArcadeBot/owa"
 	"fmt"
 	"log"
 	"os"

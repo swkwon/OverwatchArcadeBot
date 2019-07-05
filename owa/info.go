@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
+	"time"
 )
 
 // ArcadeItem ...
@@ -28,7 +29,7 @@ type ArcadeInfo struct {
 
 const (
 	overwatchArcade = "https://overwatcharcade.today/api/today"
-	telegramMsg     = `%s\n매일 변경\n%s\n%s\n\n매일 변경\n%s\n%s\n\n매주 변경\n%s\n%s\n\n매주 변경\n%s\n%s\n\n변경없음\n%s\n%s`
+	telegramMsg     = `%s\n매일 변경\n%s %s\n%s %s\n\n매주 변경\n%s %s\n%s %s\n\n변경없음\n%s %s`
 )
 
 var translateMap map[string]string
@@ -111,7 +112,13 @@ func translate(origin string) string {
 }
 
 func MakeText(info *ArcadeInfo) string {
-	return fmt.Sprintf(telegramMsg, info.UpdateAt,
+	var updateTime string
+	if t, e := time.Parse("2006-01-02 15:04:05", info.UpdateAt); e != nil {
+		updateTime = info.UpdateAt
+	} else {
+		updateTime = t.Format("2006-01-02")
+	}
+	return fmt.Sprintf(telegramMsg, updateTime,
 		translate(info.TileLarge.Players), translate(info.TileLarge.Name),
 		translate(info.TileDaily.Players), translate(info.TileDaily.Name),
 		translate(info.TileWeekly1.Players), translate(info.TileWeekly1.Name),
