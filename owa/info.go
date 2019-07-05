@@ -121,7 +121,7 @@ func MakeText(info *ArcadeInfo) string {
 	if t, e := time.Parse("2006-01-02 15:04:05", info.UpdateAt); e != nil {
 		updateTime = info.UpdateAt
 	} else {
-		updateTime = t.Format("2006-01-02")
+		updateTime = t.Format("2006.01.02.")
 	}
 	return fmt.Sprintf(telegramMsg, updateTime,
 		translate(info.TileLarge.Players), translate(info.TileLarge.Name),
