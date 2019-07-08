@@ -10,7 +10,7 @@ import (
 
 const (
 	tokenKey        = "OVERWATCH_ARCADE_BOT_API_TOKEN"
-	telegramChannel = "@overwatcharcade"
+	telegramChannel = "OVERWATCH_TG_CH"
 )
 
 func execute() error {
@@ -19,7 +19,7 @@ func execute() error {
 		return err
 	}
 	msg := owa.MakeText(info)
-	if e := owa.Send(telegramChannel, os.Getenv(tokenKey), msg); e != nil {
+	if e := owa.Send(os.Getenv(telegramChannel), os.Getenv(tokenKey), msg); e != nil {
 		log.Fatal(e)
 	}
 
