@@ -3,7 +3,6 @@ package main
 import (
 	"OverwatchArcadeBot/date"
 	"OverwatchArcadeBot/owa"
-	"fmt"
 	"log"
 	"os"
 	"time"
@@ -17,10 +16,6 @@ const (
 func execute() error {
 	info, err := owa.GetArcadeInfo()
 	if err != nil {
-		log.Println(err)
-		if e := owa.Send(telegramChannel, os.Getenv(tokenKey), fmt.Sprintf("ERROR:\n%s", err.Error())); e != nil {
-			log.Fatal(e)
-		}
 		return err
 	}
 	msg := owa.MakeText(info)
