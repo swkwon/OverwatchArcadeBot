@@ -46,7 +46,6 @@ func isTodayData() bool {
 }
 
 func main() {
-	fmt.Println("main")
 	if isTodayData() {
 		return
 	}

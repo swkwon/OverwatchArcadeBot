@@ -9,7 +9,6 @@ import (
 const telegramURLFormat = "https://api.telegram.org/bot%s/SendMessage"
 
 func Send(channel, token, text string) error {
-	fmt.Println(channel, token, text)
 	url := fmt.Sprintf(telegramURLFormat, token)
 	msg := fmt.Sprintf(`{"chat_id":"%s","text":"%s"}`, channel, text)
 
