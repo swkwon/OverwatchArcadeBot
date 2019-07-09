@@ -81,7 +81,7 @@ func init() {
 	translateMap["Team Deathmatch"] = "\U00002620팀 데스매치\U00002620"
 	translateMap["Total Mayhem"] = "\U0001f635완전 난장판\U0001f4a5"
 	translateMap["Uprising"] = "\U0001f916옴닉의 반란\U0001f6a9"
-	translateMap["Uprising (All Heroes)"] = "\U0001f916옴닉의 반란: 모든 영웅"
+	translateMap["Uprising (All Heroes)"] = "\U0001f916옴닉의 반란: 모든 영웅\U0001f9b8"
 	translateMap["Uprising (Story)"] = "\U0001f916옴닉의 반란: 스토리\U0001f916"
 	translateMap["Yeti Hunter"] = "\U0001f649예티 사냥꾼\U0001f52b"
 	translateMap["Mirrored Deathmatch"] = "\U0001f91c미러전 데스매치\U0001f91b"
