@@ -72,7 +72,7 @@ func init() {
 	translateMap["Mystery Heroes"] = "\U0001f648수수께끼의 영웅\U0001f9b8"
 	translateMap["No Limits"] = "\U0001f9b8똑같은 영웅도 환영\U0001f44b"
 	translateMap["Paris"] = "\U0001f1eb\U0001f1f7파리\U0001f1eb\U0001f1f7"
-	translateMap["Petra Deathmatch"] = "\U0001f1ef\U0001f1f4페트라 데스매치\U00002620\U0001f1f4"
+	translateMap["Petra Deathmatch"] = "\U0001f1ef\U0001f1f4페트라 데스매치\U00002620"
 	translateMap["Retribution"] = "\U0000270a응징의 날\U0001f4c5"
 	translateMap["Retribution (All Heroes)"] = "\U0000270a응징의 날: 모든 영웅\U0001f9b8"
 	translateMap["Retribution (Story)"] = "\U0000270a응징의 날: 스토리\U0000270a"
