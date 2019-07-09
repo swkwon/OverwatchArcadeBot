@@ -1,8 +1,8 @@
 package owa
 
 import (
+	"encoding/json"
 	"fmt"
-	"strings"
 	"testing"
 )
 
@@ -11,6 +11,11 @@ func TestTranslateMap(t *testing.T) {
 	for k, v := range translateMap {
 		prints = append(prints, fmt.Sprintf("%s@%s", k, v))
 	}
-	result := strings.Join(prints, "\n")
-	Send(result)
+
+	b, e := json.Marshal(prints)
+	if e != nil {
+		t.Error(e)
+	} else {
+		Send(string(b))
+	}
 }
