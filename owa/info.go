@@ -56,7 +56,7 @@ func init() {
 	translateMap["Co-op"] = "\U0001F91D협동\U0001F91D"
 	translateMap["Copa L\u00facioball"] = "\U000026bd루시우볼 경쟁전\U0001f3c6"
 	translateMap["CTF: Ayutthaya Only"] = "\U0001f3c1깃발뺏기 아유타야\U0001f1f9"
-	translateMap["CTF: Busan"] = "\U0001f3c1깃발뺏기 부산\U0001f1f0"
+	translateMap["CTF: Busan"] = "\U0001f3c1깃발뺏기 부산\U0001f1f7"
 	translateMap["Deathmatch"] = "\U00002620데스매치\U00002620"
 	translateMap["Elimination"] = "\U0001f52b섬멸전\U0001f52b"
 	translateMap["Havana"] = "\U0001f1e8하바나\U0001f1e8"
