@@ -4,11 +4,18 @@ import (
 	"bytes"
 	"fmt"
 	"net/http"
+	"os"
 )
 
-const telegramURLFormat = "https://api.telegram.org/bot%s/SendMessage"
+const (
+	tokenKey          = "OVERWATCH_ARCADE_BOT_API_TOKEN"
+	telegramChannel   = "OVERWATCH_TG_CH"
+	telegramURLFormat = "https://api.telegram.org/bot%s/SendMessage"
+)
 
-func Send(channel, token, text string) error {
+func Send(text string) error {
+	channel := os.Getenv(telegramChannel)
+	token := os.Getenv(tokenKey)
 	url := fmt.Sprintf(telegramURLFormat, token)
 	msg := fmt.Sprintf(`{"chat_id":"%s","text":"%s"}`, channel, text)
 

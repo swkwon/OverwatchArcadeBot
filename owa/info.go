@@ -116,6 +116,7 @@ func translate(origin string) string {
 	return origin
 }
 
+// MakeText ...
 func MakeText(info *ArcadeInfo) string {
 	var updateTime string
 	if t, e := time.Parse("2006-01-02 15:04:05", info.UpdateAt); e != nil {
