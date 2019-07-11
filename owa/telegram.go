@@ -13,7 +13,11 @@ const (
 	telegramURLFormat = "https://api.telegram.org/bot%s/SendMessage"
 )
 
-func Send(text string) error {
+type Telegram struct {
+
+}
+
+func (t *Telegram) Send(text string) error {
 	channel := os.Getenv(telegramChannel)
 	token := os.Getenv(tokenKey)
 	url := fmt.Sprintf(telegramURLFormat, token)
