@@ -7,7 +7,6 @@ type WebHook interface {
 
 var webHookers []WebHook
 func init() {
-	webHookers = append(webHookers, &Telegram{})
 	webHookers = append(webHookers, &Discord{})
 }
 
