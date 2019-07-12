@@ -29,15 +29,22 @@ type ArcadeInfo struct {
 
 const (
 	overwatchArcade = "https://overwatcharcade.today/api/today"
-	telegramMsg     = `%s\n매일 변경\n%s %s\n%s %s\n\n매주 변경\n%s %s\n%s %s\n\n변경없음\n%s %s`
+	telegramMsg     = `%s
+메인 아케이드
+%s %s
+
+매일 변경
+%s %s
+
+매주 변경
+%s %s
+%s %s
+
+지속
+%s %s`
 )
 
 var translateMap map[string]string
-
-// 깃발 \U0001f3c1
-// 샤토(성) \U0001f3f0
-// 데스매치 해골 \U00002620
-// 경쟁전 트로피
 
 func init() {
 	translateMap = make(map[string]string)

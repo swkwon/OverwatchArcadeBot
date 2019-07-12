@@ -14,7 +14,7 @@ type Discord struct {
 }
 
 func (d *Discord) Send(text string) error {
-	body := `{"content":"%s", "username":"Overwatch today's arcade", "avatar_url":"https://cdn.discordapp.com/icons/592965021051650058/7c85a56a8741273862df36d3c72973d6.png"}`
+	body := `{"content":"%s", "username":"Overwatch today's arcade"}`
 
 	reader := bytes.NewBuffer([]byte(fmt.Sprintf(body, text)))
 	if req, err := http.NewRequest("POST", os.Getenv(URL), reader); err == nil {
