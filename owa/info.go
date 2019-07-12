@@ -29,19 +29,7 @@ type ArcadeInfo struct {
 
 const (
 	overwatchArcade = "https://overwatcharcade.today/api/today"
-	telegramMsg     = `%s
-메인 아케이드
-%s %s
-
-매일 변경
-%s %s
-
-매주 변경
-%s %s
-%s %s
-
-지속
-%s %s`
+	arcadeFormat     = `%s\n메인 아케이드\n%s %s\n\n매일 변경\n%s %s\n\n매주 변경\n%s %s\n%s %s\n\n지속\n%s %s`
 )
 
 var translateMap map[string]string
@@ -131,7 +119,7 @@ func MakeText(info *ArcadeInfo) string {
 	} else {
 		updateTime = t.Format("2006.01.02.")
 	}
-	return fmt.Sprintf(telegramMsg, updateTime,
+	return fmt.Sprintf(arcadeFormat, updateTime,
 		translate(info.TileLarge.Players), translate(info.TileLarge.Name),
 		translate(info.TileDaily.Players), translate(info.TileDaily.Name),
 		translate(info.TileWeekly1.Players), translate(info.TileWeekly1.Name),
