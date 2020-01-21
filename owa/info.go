@@ -11,25 +11,27 @@ import (
 
 // ArcadeItem ...
 type ArcadeItem struct {
-	ID      int    `json:"id"`
-	Name    string `json:"name"`
-	Players string `json:"players"`
-	Code    string `json:"code"`
+	ID      int     `json:"id"`
+	Name    string  `json:"name"`
+	Players string  `json:"players"`
+	Code    string  `json:"code"`
+	Label   *string `json:"label"`
 }
 
 // ArcadeInfo ...
 type ArcadeInfo struct {
-	UpdateAt      string     `json:"updated_at"`
-	TileLarge     ArcadeItem `json:"tile_large"`
-	TileWeekly1   ArcadeItem `json:"tile_weekly_1"`
-	TileDaily     ArcadeItem `json:"tile_daily"`
-	TileWeekly2   ArcadeItem `json:"tile_weekly_2"`
-	TilePermanent ArcadeItem `json:"tile_permanent"`
+	CreatedAt string     `json:"created_at"`
+	Tile1     ArcadeItem `json:"tile_1"`
+	Tile2     ArcadeItem `json:"tile_2"`
+	Tile3     ArcadeItem `json:"tile_3"`
+	Tile4     ArcadeItem `json:"tile_4"`
+	Tile5     ArcadeItem `json:"tile_5"`
+	Tile6     ArcadeItem `json:"tile_6"`
+	Tile7     ArcadeItem `json:"tile_7"`
 }
 
 const (
 	overwatchArcade = "https://overwatcharcade.today/api/today"
-	arcadeFormat     = `%s\n메인 아케이드\n%s %s\n\n매일 변경\n%s %s\n\n매주 변경\n%s %s\n%s %s\n\n지속\n%s %s`
 )
 
 var translateMap map[string]string
@@ -83,7 +85,7 @@ func init() {
 	translateMap["Hero Gauntlet"] = "\U0001f923영웅 건틀릿\U0001f94a"
 }
 
-func GetArcadeInfo() (*ArcadeInfo, error) {
+func GetArcadeInfo() ([]*ArcadeInfo, error) {
 	res, err := http.Get(overwatchArcade)
 
 	if err != nil {
@@ -96,8 +98,8 @@ func GetArcadeInfo() (*ArcadeInfo, error) {
 		return nil, err
 	}
 
-	info := &ArcadeInfo{}
-	if err := json.Unmarshal(data, info); err != nil {
+	var info []*ArcadeInfo
+	if err := json.Unmarshal(data, &info); err != nil {
 		log.Println(err, string(data))
 		return nil, fmt.Errorf("got %s, error: %s", string(data), err.Error())
 	}
@@ -111,18 +113,30 @@ func translate(origin string) string {
 	return origin
 }
 
+func makeTileInfo(item *ArcadeItem) string {
+	return translate(item.Players) + " " + translate(item.Name)
+}
+
 // MakeText ...
-func MakeText(info *ArcadeInfo) string {
-	var updateTime string
-	if t, e := time.Parse("2006-01-02 15:04:05", info.UpdateAt); e != nil {
-		updateTime = info.UpdateAt
-	} else {
-		updateTime = t.Format("2006.01.02.")
+func MakeText(info []*ArcadeInfo) string {
+	for _, v := range info {
+		var created string
+		if t, e := time.Parse("2006-01-02 15:04:05", v.CreatedAt); e != nil {
+			created = v.CreatedAt
+		} else {
+			created = t.Format("2006.01.02")
+		}
+
+		return fmt.Sprintf(`%s %s\n\n%s\n%s\n%s\n%s\n%s\n%s\n%s`,
+			created,
+			"Today's Overwatch arcade 😍",
+			makeTileInfo(&v.Tile1),
+			makeTileInfo(&v.Tile2),
+			makeTileInfo(&v.Tile3),
+			makeTileInfo(&v.Tile4),
+			makeTileInfo(&v.Tile5),
+			makeTileInfo(&v.Tile6),
+			makeTileInfo(&v.Tile7))
 	}
-	return fmt.Sprintf(arcadeFormat, updateTime,
-		translate(info.TileLarge.Players), translate(info.TileLarge.Name),
-		translate(info.TileDaily.Players), translate(info.TileDaily.Name),
-		translate(info.TileWeekly1.Players), translate(info.TileWeekly1.Name),
-		translate(info.TileWeekly2.Players), translate(info.TileWeekly2.Name),
-		translate(info.TilePermanent.Players), translate(info.TilePermanent.Name))
+	return "Sorry, I have no arcade information🤔"
 }
