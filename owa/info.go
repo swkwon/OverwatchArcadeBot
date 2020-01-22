@@ -84,6 +84,8 @@ func init() {
 	translateMap["Yeti Hunter"] = "\U0001f649예티 사냥꾼\U0001f52b"
 	translateMap["Mirrored Deathmatch"] = "\U0001f91c미러전 데스매치\U0001f91b"
 	translateMap["Hero Gauntlet"] = "\U0001f923영웅 건틀릿\U0001f94a"
+	translateMap["CTF Blitz"] = "\U0001f6a9깃발뺏기 속공전\U0001f6a9"
+	translateMap["Quick Play Classic"] = "\U0001f938빠른대전 클래식\U0001f938"
 }
 
 // GetArcadeInfo ...
