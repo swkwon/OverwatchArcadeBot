@@ -12,12 +12,14 @@ func execute() error {
 	if err != nil {
 		return err
 	}
-	msg := owa.MakeText(info)
-	if e := owa.Send(msg); e != nil {
-		log.Fatal(e)
+	if msg, err := owa.MakeText(info); err != nil {
+		return err
+	} else {
+		if e := owa.Send(msg); e != nil {
+			log.Fatal(e)
+		}
+		return nil
 	}
-
-	return nil
 }
 
 func isTodayData() bool {

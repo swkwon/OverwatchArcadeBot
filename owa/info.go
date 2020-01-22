@@ -2,6 +2,7 @@ package owa
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -85,6 +86,7 @@ func init() {
 	translateMap["Hero Gauntlet"] = "\U0001f923영웅 건틀릿\U0001f94a"
 }
 
+// GetArcadeInfo ...
 func GetArcadeInfo() ([]*ArcadeInfo, error) {
 	res, err := http.Get(overwatchArcade)
 
@@ -118,7 +120,7 @@ func makeTileInfo(item *ArcadeItem) string {
 }
 
 // MakeText ...
-func MakeText(info []*ArcadeInfo) string {
+func MakeText(info []*ArcadeInfo) (string, error) {
 	for _, v := range info {
 		var created string
 		if t, e := time.Parse("2006-01-02 15:04:05", v.CreatedAt); e != nil {
@@ -136,7 +138,7 @@ func MakeText(info []*ArcadeInfo) string {
 			makeTileInfo(&v.Tile4),
 			makeTileInfo(&v.Tile5),
 			makeTileInfo(&v.Tile6),
-			makeTileInfo(&v.Tile7))
+			makeTileInfo(&v.Tile7)), nil
 	}
-	return "Sorry, I have no arcade information🤔"
+	return "", errors.New("no arcade information")
 }
